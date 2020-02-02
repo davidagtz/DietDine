@@ -141,6 +141,7 @@ function displayRestaurants() {
 	return (
 		<PopUp
 			trigger={
+<<<<<<< HEAD
 				<div id="restaurant">
 					<img src="/images/tacobell.jpg" alt="taco bell" />
 					<section id="restaurantName">
@@ -148,6 +149,41 @@ function displayRestaurants() {
 						<hr />
 						<p>Sunday: 7AM - 3AM</p>
 					</section>
+=======
+				<div>
+					<div id="restaurant">
+						<img class="restaurantImg" src="/images/tacobell.jpg" />
+						<section id="restaurantName">
+							<h3>Taco Bell</h3>
+							<hr />
+							<p>Sunday: 7AM - 3AM</p>
+						</section>
+					</div>
+					<div id="restaurant">
+						<img class="restaurantImg" src="/images/mcdonalds.png" />
+						<section id="restaurantName">
+							<h3>McDonald's</h3>
+							<hr />
+							<p>Sunday: 24 Hours</p>
+						</section>
+					</div>
+					<div id="restaurant">
+						<img class="restaurantImg" src="/images/tacocabana.jpg" />
+						<section id="restaurantName">
+							<h3>Taco Cabana</h3>
+							<hr />
+							<p>Sunday: 24 Hours</p>
+						</section>
+					</div>
+					<div id="restaurant">
+						<img class="restaurantImg" src="/images/jackinthebox.png" />
+						<section id="restaurantName">
+							<h3>Jack in the Box</h3>
+							<hr />
+							<p>Sunday: 24 Hours</p>
+						</section>
+					</div>
+>>>>>>> 3d0ef7193c121c1a91f4b3958eae4a7b50ef26ab
 				</div>
 			}
 		/>
