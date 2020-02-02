@@ -146,18 +146,67 @@ export default class Map extends Component {
 	}
 }
 
-function displayRestaurants(menus) {
-	console.log("menu", menus);
+const menus = [
+	[
+		//Vegetarian and Lactose
+		[
+			"Barbecue Dip Sauce", // Jack in the Box
+			"Root Beer",
+			"Artisan Potato Bun",
+			"Glazed Bun",
+			"Canola blend Frying oil",
+			"Caramel Syrup",
+			"Carrots",
+			"French Fries",
+			"Hash Browns"
+		],
+		[
+			"Fried Bowl", // Taco Cabana
+			"Chips and Guacamole",
+			"Corn Tortilla",
+			"Flour Tortilla",
+			"Salsa Verde",
+			"Pico de Gallo",
+			"Tortilla Chips"
+		]
+	],
+	[
+		// Vegan and Gluten free
+		[
+			"Aquafina Water", // Taco Bell
+			"Beach Berry Freeze",
+			"Black Beans",
+			"Border Sauce",
+			"Cherry Freeze",
+			"Cilantro",
+			"Nacho Chips",
+			"Blue Raspberry Freeze",
+			"Jalapenos",
+			"Lemonade Freeze",
+			"Refried Beans",
+			"Taco Shell",
+			"Tostada Shell"
+		],
+		[
+			"Minute Maid Slushie", // McDonalds
+			"Sweet Peach Slushie",
+			"Americano",
+			"Premium Roast Coffee"
+		]
+	]
+];
+
+function displayRestaurants(ms) {
 	return [
 		<PopUp
 			title="Taco Bell"
-			menu={menus["Taco Bell"]}
-			image="/images/tacobell.jpg"
+			menu={menus[1][0]}
+			image="/images/tacobell.png"
 			trigger={
 				<div id="restaurant">
 					<img
 						className="restaurantImg"
-						src="/images/tacobell.jpg"
+						src="/images/tacobell.png"
 					/>
 					<section id="restaurantName">
 						<h3>Taco Bell</h3>
@@ -169,7 +218,7 @@ function displayRestaurants(menus) {
 		/>,
 		<PopUp
 			title="McDonald's"
-			menu={menus["McDonalds"]}
+			menu={menus[1][1]}
 			image="/images/mcdonalds.png"
 			trigger={
 				<div id="restaurant">
@@ -187,13 +236,13 @@ function displayRestaurants(menus) {
 		/>,
 		<PopUp
 			title="Taco Cabana"
-			menu={menus["Taco Cabana"]}
-			image="/images/tacocabana.jpg"
+			menu={menus[0][1]}
+			image="/images/tacocabana.png"
 			trigger={
 				<div id="restaurant">
 					<img
 						className="restaurantImg"
-						src="/images/tacocabana.jpg"
+						src="/images/tacocabana.png"
 					/>
 					<section id="restaurantName">
 						<h3>Taco Cabana</h3>
@@ -205,7 +254,7 @@ function displayRestaurants(menus) {
 		/>,
 		<PopUp
 			title="Jack in the Box"
-			menu={menus["Jack in the Box"]}
+			menu={menus[0][0]}
 			image="/images/jackinthebox.png"
 			trigger={
 				<div id="restaurant">
