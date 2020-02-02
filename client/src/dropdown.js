@@ -20,34 +20,34 @@ export let Drop_down_data = [
 export let Data = [
   {
     key: "dallas",
-    value: "Dallas"
+    value: "Dallas, TX"
   },
   {
     key: "detroit",
-    value: "Detroit"
+    value: "Detroit, MI"
   },
   {
     key: "denver",
-    value: "Denver"
+    value: "Denver, CO"
   },
   {
     key: "plano",
-    value: "Plano"
+    value: "Plano, TX"
   },
   {
     key: "richardson",
-    value: "Richardson"
+    value: "Richardson, TX"
   },
   {
     key: "mckinney",
-    value: "McKinney"
+    value: "McKinney, TX"
   },
   {
-    key: "frisco",
+    key: "frisco, TX",
     value: "Frisco"
   },
   {
     key: "victory park",
-    value: "Victory Park"
+    value: "Victory Park, TX"
   }
 ];
