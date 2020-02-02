@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../styles/Map.sass';
 import Sidebar from 'react-sidebar';
 import ReactSearchBox from 'react-search-box';
+import Multiselect from 'multiselect-dropdown-react';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
@@ -32,7 +33,7 @@ export default class Map extends Component {
 		this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
 	}
 
-	data = [
+	locationData = [
 		{
 			key: '1',
 			value: 'Dallas, TX'
@@ -44,6 +45,37 @@ export default class Map extends Component {
 		{
 			key: '3',
 			value: 'Laredo, TX'
+		},
+		{
+			key: '4',
+			value: 'Richardson, TX'
+		},
+		{
+			key: '5',
+			value: 'Detroit, MI'
+		},
+		{
+			key: '6',
+			value: 'Denver, CO'
+		}
+	];
+
+	dietData = [
+		{
+			name: 'Vegetarian',
+			value: 'Vegetarian'
+		},
+		{
+			name: 'Vegan',
+			value: 'Vegan'
+		},
+		{
+			name: 'Gluten Free',
+			value: 'Gluten Free'
+		},
+		{
+			name: 'Lactose Free',
+			value: 'Lactose Free'
 		}
 	];
 
@@ -68,26 +100,32 @@ export default class Map extends Component {
 					{/* <button onClick={() => this.onSetSidebarOpen(false)}>Close sidebar</button> */}
 					<div id="sb-wrapper">
 						<ReactSearchBox
+							id="searchbox"
 							placeholder="Search your city..."
 							// value="Search city"
-							data={this.data}
+							data={this.locationData}
 							onSelect={(data) => {
-								fetch(
-									'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-										data.value +
-										'&key=AIzaSyDSPBhWlOC5mJVR7F7ZSjglEaVV1vJtdQ0'
-								)
-									.then((res) => res.json())
-									.then((res) => {
-										const loc = res.results[0].geometry.location;
-										const latLng = new document.google.maps.LatLng(loc.lat, loc.lng);
-										document.map.panTo(latLng);
-										document.map.setZoom(13);
-									});
+								document.globals.geocode(data.value).then((res) => {
+									const loc = res.results[0].geometry.location;
+									const latLng = new document.google.maps.LatLng(loc.lat, loc.lng);
+									document.map.panTo(latLng);
+									document.map.setZoom(13);
+								});
 							}}
+						/>{' '}
+						<Multiselect
+							placeholder="Search your diet..."
+							options={this.dietData}
+							onSelectOptions={(params) => console.log(params)}
 						/>
+						{/* <div id="restaurant">
+							<section id="restaurantName">
+								<h3>Taco Bell</h3>
+							</section>
+						</div> */}
 					</div>
 				</Sidebar>
+
 				<div id="googleMap" />
 			</div>
 		);
