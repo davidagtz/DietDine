@@ -12,11 +12,12 @@
 		"express": "~4.16.1",
 		"http-errors": "~1.6.3",
 		"jade": "~1.11.0",
+		"mongodb": "^3.5.2",
 		"morgan": "~1.9.1",
 		"node-sass": "^4.13.1",
 		"react-router-dom": "^5.1.2",
-		"react-search-field": "^1.0.0",
-		"react-search-box": "^2.0.2"
+		"react-search-box": "^2.0.2",
+		"react-search-field": "^1.0.0"
 	},
 	"devDependencies": {
 		"foreman": "^3.0.1"
