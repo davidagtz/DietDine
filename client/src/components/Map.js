@@ -3,7 +3,6 @@ import '../styles/Map.sass';
 import Sidebar from 'react-sidebar';
 import ReactSearchBox from 'react-search-box';
 import Multiselect from 'multiselect-dropdown-react';
-import { Modal } from 'semantic-ui-react';
 import PopUp from './modal';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
@@ -88,38 +87,47 @@ export default class Map extends Component {
 					open={this.state.sidebarOpen}
 					docked={this.state.sidebarDocked}
 					onSetOpen={this.onSetSidebarOpen}
+					children={<div />}
 					styles={{
 						content: {
-							backgroundColor: '#77777700'
+							backgroundColor: '#77777700',
+							boxShadow: '0'
 							// backgroundColor: '#66ccff77'
 							//  opacity: 0.2
 						},
-						root: { width: '20%' }
+						root: {
+							width: '20%',
+							boxShadow: '0',
+							overflow: 'visible',
+							zIndex: 1
+						},
+						sidebar: { boxShadow: '0' },
+						overlay: { display: 'none' },
+						dragHandle: { boxShadow: '0' }
 					}}
-				>
-					{/* <b>Sidebar</b> */}
-					{/* <button onClick={() => this.onSetSidebarOpen(true)}>Close sidebar</button> */}
-					{/* <button onClick={() => this.onSetSidebarOpen(false)}>Close sidebar</button> */}
-					<div id="sb-wrapper">
-						<ReactSearchBox
-							id="searchbox"
-							placeholder="Search your city..."
-							// value="Search city"
-							data={this.locationData}
-							onSelect={(data) => {
-								document.globals.mapGoTo(data.value);
-							}}
-						/>{' '}
-						<Multiselect
-							placeholder="Search your diet..."
-							options={this.dietData}
-							onSelectOptions={(params) => {
-								document.globals.params = params;
-							}}
-						/>
-						{displayRestaurants()}
-					</div>
-				</Sidebar>
+					sidebar={
+						<div id="sb-wrapper">
+							<ReactSearchBox
+								id="searchbox"
+								placeholder="Search your city..."
+								// value="Search city"
+								data={this.locationData}
+								onSelect={(data) => {
+									document.globals.mapGoTo(data.value);
+								}}
+							/>{' '}
+							<Multiselect
+								placeholder="Search your diet..."
+								options={this.dietData}
+								onSelectOptions={(params) => {
+									document.globals.params = params;
+									document.globals.placeFood();
+								}}
+							/>
+							{displayRestaurants()}
+						</div>
+					}
+				/>
 
 				<div id="googleMap" />
 			</div>
@@ -133,7 +141,7 @@ function displayRestaurants () {
 			trigger={
 				<div>
 					<div id="restaurant">
-						<img class="restaurantImg" src="/images/tacobell.png" />
+						<img class="restaurantImg" src="/images/tacobell.jpg" />
 						<section id="restaurantName">
 							<h3>Taco Bell</h3>
 							<hr />
@@ -149,7 +157,7 @@ function displayRestaurants () {
 						</section>
 					</div>
 					<div id="restaurant">
-						<img class="restaurantImg" src="/images/tacocabana.png" />
+						<img class="restaurantImg" src="/images/tacocabana.jpg" />
 						<section id="restaurantName">
 							<h3>Taco Cabana</h3>
 							<hr />
