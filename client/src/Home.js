@@ -22,7 +22,7 @@ class App extends Component {
 			<div className="App">
 				<header className="App-header">
 					<div id="big-cont">
-						<h1 className="App-Title">DIETDINE</h1>
+						<h1 className="App-Title">DietDine</h1>
 						<div id="inputs">
 							<ReactSearchBox
 								placeholder="Enter a place"
