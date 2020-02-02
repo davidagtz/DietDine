@@ -67,5 +67,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	el.children[0].remove();
 	el.append(fe);
 
+	const urlParams = new URLSearchParams(window.location.search);
+	const list = document.getElementsByClassName('list-result')[0].children;
+	for (const label of list) {
+		const inp = label.getElementsByTagName('input')[0];
+		if (urlParams.get(inp.value)) inp.click();
+	}
+
 	loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDSPBhWlOC5mJVR7F7ZSjglEaVV1vJtdQ0&callback=myMap');
 });
