@@ -7,7 +7,7 @@ class PopUp extends Component {
 			<Modal trigger={this.props.trigger ? this.props.trigger : <Button>{this.props.title}</Button>}>
 				<Modal.Header>Taco Bell</Modal.Header>
 				<Modal.Content image>
-					<Image wrapped size="medium" src="/images/tacobell.jpg" />
+					<Image wrapped size="medium" src="/images/tacobell.png" />
 					<Modal.Description>
 						<Header>Menu Items</Header>
 						<ul>

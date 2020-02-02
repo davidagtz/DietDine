@@ -133,7 +133,7 @@ function displayRestaurants () {
 			trigger={
 				<div>
 					<div id="restaurant">
-						<img class="restaurantImg" src="/images/tacobell.jpg" />
+						<img class="restaurantImg" src="/images/tacobell.png" />
 						<section id="restaurantName">
 							<h3>Taco Bell</h3>
 							<hr />
@@ -149,7 +149,7 @@ function displayRestaurants () {
 						</section>
 					</div>
 					<div id="restaurant">
-						<img class="restaurantImg" src="/images/tacocabana.jpg" />
+						<img class="restaurantImg" src="/images/tacocabana.png" />
 						<section id="restaurantName">
 							<h3>Taco Cabana</h3>
 							<hr />
