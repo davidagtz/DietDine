@@ -6,25 +6,37 @@ document.globals.geocode = (addr) => {
 	).then((res) => res.json());
 };
 
+document.globals.mapGoTo = (addr) => {
+	return document.globals
+		.geocode(addr)
+		.then((res) => {
+			const loc = res.results[0].geometry.location;
+			const latLng = new document.google.maps.LatLng(loc.lat, loc.lng);
+			document.map.panTo(latLng);
+			document.map.setZoom(13);
+			let params = '';
+			for (const val of document.globals.params) params += val + '=true&';
+			return fetch('/find?' + params);
+		})
+		.then((res) => {
+			for (const restaurants of res) {
+				const loc = restaurants.location;
+				document.globals.geocode(loc).then((gres) => {
+					const loc = gres.results[0].geometry.location;
+					const latLng = new document.google.maps.LatLng(loc.lat, loc.lng);
+					new google.maps.Marker({
+						position: latLng,
+						map: document.globals.map,
+						title: restaurants.name
+					});
+				});
+			}
+		});
+};
+
 function loadScript (url, callback) {
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
-
-	// if (script.readyState) {
-	// 	//IE
-	// 	script.onreadystatechange = function () {
-	// 		if (script.readyState == 'loaded' || script.readyState == 'complete') {
-	// 			script.onreadystatechange = null;
-	// 			callback();
-	// 		}
-	// 	};
-	// } else {
-	// 	//Others
-	// 	script.onload = function () {
-	// 		callback();
-	// 	};
-	// }
-
 	script.src = url;
 	document.getElementsByTagName('head')[0].appendChild(script);
 }
@@ -46,12 +58,7 @@ function myMap () {
 	const urlParams = new URLSearchParams(window.location.search);
 	const location = urlParams.get('location');
 	if (location) {
-		document.globals.geocode(location).then((res) => {
-			const loc = res.results[0].geometry.location;
-			const latLng = new document.google.maps.LatLng(loc.lat, loc.lng);
-			document.map.panTo(latLng);
-			document.map.setZoom(13);
-		});
+		document.globals.mapGoTo(location);
 	}
 }
 document.addEventListener('DOMContentLoaded', function () {

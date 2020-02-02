@@ -1,8 +1,19 @@
 #googleMap
     width: 100%
     float: right
-    height: 42em
+    height: 100%
     z-index: -1
+
+#root
+    height: 100%
+    >div
+        height: 100%
+        >div
+            height: 100%
+            >div
+                height: 100%
+                >div
+                    height: 100%
 
 #sb-wrapper
     display: block
@@ -51,11 +62,16 @@ input+.react-search-box-dropdown
         //  height: 20px
         .chip-close
             color: #000
-            vertical-align: middle
+            //  vertical-align: middle
             font-size: 80%
-            padding-bottom: 5%
+            //  padding-bottom: 5%
+            padding: 1px
+            &:hover
+                color: #fff
         button.chip-close
             //  height: 100%
+            //  padding-bottom: 5%
+            
             
     .chip-text
         font-size: 80%
@@ -69,10 +85,32 @@ input+.react-search-box-dropdown
     float: left
     background-color: #fff
     border-radius: 10px
-    padding: 0px 80px
-    line-height: 0.2em
-    padding-bottom: 100px
+    padding: 0px 30px
     box-shadow: 0 1px 4px #0007
     border-radius: 5px
+    cursor: pointer
+    img
+        height: 1em
+        width: 1em
     #restaurantName
-        height: 40px
+        // height: 40px
+        // width: 100px
+        // p
+        //     height: 40px
+    p
+        width: 150px
+        
+// img 
+//     border: 1px solid #ddd;
+//     border-radius: 4px;
+//     padding: 5px;
+//     width: 150px;
+// &hover 
+//     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+
+// <a href="C:\Users\armaa\Documents\DietDine\client\images">
+//   <img src="C:\Users\armaa\Documents\DietDine\client\images" alt="Taco Bell">
+// </a>
+
+//  <img src={ require('C:\Users\armaa\Documents\DietDine\client\images') } />
+//  let restaurantIcon = require('C:\Users\armaa\Documents\DietDine\client\images')

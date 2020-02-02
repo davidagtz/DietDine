@@ -3,6 +3,8 @@ import '../styles/Map.sass';
 import Sidebar from 'react-sidebar';
 import ReactSearchBox from 'react-search-box';
 import Multiselect from 'multiselect-dropdown-react';
+import { Modal } from 'semantic-ui-react';
+import PopUp from './modal';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
@@ -105,24 +107,17 @@ export default class Map extends Component {
 							// value="Search city"
 							data={this.locationData}
 							onSelect={(data) => {
-								document.globals.geocode(data.value).then((res) => {
-									const loc = res.results[0].geometry.location;
-									const latLng = new document.google.maps.LatLng(loc.lat, loc.lng);
-									document.map.panTo(latLng);
-									document.map.setZoom(13);
-								});
+								document.globals.mapGoTo(data.value);
 							}}
 						/>{' '}
 						<Multiselect
 							placeholder="Search your diet..."
 							options={this.dietData}
-							onSelectOptions={(params) => console.log(params)}
+							onSelectOptions={(params) => {
+								document.globals.params = params;
+							}}
 						/>
-						{/* <div id="restaurant">
-							<section id="restaurantName">
-								<h3>Taco Bell</h3>
-							</section>
-						</div> */}
+						{displayRestaurants()}
 					</div>
 				</Sidebar>
 
@@ -130,4 +125,21 @@ export default class Map extends Component {
 			</div>
 		);
 	}
+}
+
+function displayRestaurants () {
+	return (
+		<PopUp
+			trigger={
+				<div id="restaurant">
+					<img src="/images/tacobell.jpg" />
+					<section id="restaurantName">
+						<h3>Taco Bell</h3>
+						<hr />
+						<p>Sunday: 7AM - 3AM</p>
+					</section>
+				</div>
+			}
+		/>
+	);
 }

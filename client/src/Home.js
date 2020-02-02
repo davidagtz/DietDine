@@ -4,6 +4,7 @@ import './styles/App.sass';
 import Multiselect from 'multiselect-dropdown-react';
 import Button from '@material-ui/core/Button';
 import { Data, Drop_down_data } from './dropdown';
+import PopUp from './components/modal';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const arr = document.getElementsByTagName('input');
