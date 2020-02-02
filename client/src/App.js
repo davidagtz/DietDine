@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Home from './Home';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Map from './components/Map';
+import Add from './components/Add';
 
 class App extends Component {
 	render () {
@@ -24,6 +25,15 @@ class App extends Component {
 							render={() => (
 								<div className="App">
 									<Map />
+								</div>
+							)}
+						/>
+						<Route
+							exact={true}
+							path="/add"
+							render={() => (
+								<div className="App">
+									<Add />
 								</div>
 							)}
 						/>

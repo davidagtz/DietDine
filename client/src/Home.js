@@ -63,6 +63,17 @@ class App extends Component {
 							>
 								Search
 							</Button>
+
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={() => {
+									const url = 'add';
+									window.location.href = url;
+								}}
+							>
+								Add Restaurant
+							</Button>
 						</div>
 					</div>
 				</header>

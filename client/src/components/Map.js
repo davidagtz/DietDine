@@ -87,7 +87,7 @@ export default class Map extends Component {
 					open={this.state.sidebarOpen}
 					docked={this.state.sidebarDocked}
 					onSetOpen={this.onSetSidebarOpen}
-					children={<div></div>}
+					children={<div />}
 					styles={{
 						content: {
 							backgroundColor: "#77777700",
