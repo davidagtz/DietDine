@@ -2,7 +2,7 @@ const mongo = require("mongodb").MongoClient;
 const fs = require("fs");
 
 mongo.connect("mongodb://localhost:27017").then(client => {
-	let str = fs.readFileSync("TacoBell.csv", { encoding: "utf-8" });
+	let str = fs.readFileSync("McDonalds.csv", { encoding: "utf-8" });
 	let lines = str.split("\r\n").map(e => e.split(","));
 	let arr = [];
 	for (let i = 1; i < lines.length - 1; i++) arr.push(makeDoc(lines[i]));
