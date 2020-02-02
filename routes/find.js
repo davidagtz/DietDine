@@ -23,7 +23,8 @@ module.exports = db => {
 						opts.push(item.name);
 					}
 					r.push({
-						restaurant: rest.restaurant,
+						restaurant: rest.name,
+						location: rest.location,
 						options: opts
 					});
 				}
