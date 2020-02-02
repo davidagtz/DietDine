@@ -6,20 +6,30 @@ document.globals.geocode = addr => {
 	).then(res => res.json());
 };
 
-document.globals.placeFood = () => {
+const kv = {
+	Vegetarian: "isVeg",
+	Vegan: "isVegan",
+	"Lactose Free": "isLF",
+	"Gluten Free": "isGF"
+};
+
+document.globals.placeFood = cb => {
 	let params = "";
 	if (!document.globals.params) return;
-	for (const val of document.globals.params) params += val + "=true&";
+	for (let i in document.globals.params)
+		params +=
+			kv[document.globals.params[i]] +
+			"=true" +
+			(i == document.globals.params.length - 1 ? "" : "&");
 	return fetch("/find?" + params)
 		.then(res => res.json())
 		.then(res => {
-			console.log(res);
-			for (const restaurants of res) {
+			for (let restaurants of res) {
 				const loc = restaurants.location;
-				console.log(loc);
+				document.globals.menus[restaurants.restaurant] =
+					restaurants.options;
 				document.globals.geocode(loc).then(gres => {
 					const loc = gres.results[0].geometry.location;
-					console.log(loc);
 					const latLng = new google.maps.LatLng(
 						loc.lat,
 						loc.lng
@@ -32,10 +42,11 @@ document.globals.placeFood = () => {
 					marker.setLabel(restaurants.restaurant[0]);
 				});
 			}
-		});
+		})
+		.then(cb);
 };
 
-document.globals.mapGoTo = addr => {
+document.globals.mapGoTo = (addr, cb) => {
 	return document.globals
 		.geocode(addr)
 		.then(res => {
@@ -45,6 +56,7 @@ document.globals.mapGoTo = addr => {
 			document.map.setZoom(13);
 			return document.globals.placeFood();
 		})
+		.then(cb)
 		.catch(console.error);
 };
 

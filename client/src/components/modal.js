@@ -1,19 +1,28 @@
-import React, { Component } from 'react';
-import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Button, Header, Image, Modal } from "semantic-ui-react";
 
 class PopUp extends Component {
-	render () {
+	render() {
+		let items = [];
+		console.log(this.props);
+		if (this.props.menu)
+			for (const it of this.props.menu) items.push(<li>{it}</li>);
 		return (
-			<Modal trigger={this.props.trigger ? this.props.trigger : <Button>{this.props.title}</Button>}>
-				<Modal.Header>Taco Bell</Modal.Header>
+			<Modal
+				trigger={
+					this.props.trigger ? (
+						this.props.trigger
+					) : (
+						<Button>{this.props.title}</Button>
+					)
+				}
+			>
+				<Modal.Header>{this.props.title}</Modal.Header>
 				<Modal.Content image>
-					<Image wrapped size="medium" src="/images/tacobell.jpg" />
+					<Image wrapped size="medium" src={this.props.image} />
 					<Modal.Description>
 						<Header>Menu Items</Header>
-						<ul>
-							<li>Ey taco taco taco taco</li>
-							<li>Freeze! everybody clap yo hands</li>
-						</ul>
+						<ul>{items}</ul>
 						{this.props.children}
 					</Modal.Description>
 				</Modal.Content>
