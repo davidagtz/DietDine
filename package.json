@@ -14,7 +14,8 @@
 		"morgan": "~1.9.1",
 		"node-sass": "^4.13.1",
 		"react-router-dom": "^5.1.2",
-		"react-search-field": "^1.0.0"
+		"react-search-field": "^1.0.0",
+		"react-search-box": "^2.0.2"
 	},
 	"devDependencies": {}
 }
